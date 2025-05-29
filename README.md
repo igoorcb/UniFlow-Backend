@@ -106,7 +106,98 @@ Um sistema simplificado para testar funcionalidades de vendas, com as seguintes 
 - Git
 
 ### Passos para Instalação
-1. Clone o repositório:
+1. **Clone o repositório:**
    ```bash
    git clone https://github.com/seu-usuario/uniflow.git
    cd uniflow
+   ```
+
+2. **Instale as dependências:**
+   ```bash
+   composer install
+   ```
+
+3. **Configure o ambiente:**
+   - Copie o arquivo de exemplo:
+     ```bash
+     cp .env.example .env
+     ```
+   - Edite o arquivo `.env` e configure as variáveis do banco de dados para MySQL:
+     ```
+     DB_CONNECTION=mysql
+     DB_HOST=127.0.0.1
+     DB_PORT=3306
+     DB_DATABASE=uniflow_backend
+     DB_USERNAME=root
+     DB_PASSWORD=
+     ```
+
+4. **Gere a chave da aplicação:**
+   ```bash
+   php artisan key:generate
+   ```
+
+---
+
+## Como rodar as migrations
+
+Certifique-se de que o banco de dados `uniflow_backend` já existe no seu MySQL.  
+Depois, execute:
+
+```bash
+php artisan migrate
+```
+
+---
+
+## Como executar o servidor local
+
+Inicie o servidor de desenvolvimento do Laravel:
+
+```bash
+php artisan serve
+```
+
+Acesse [http://localhost:8000](http://localhost:8000) no navegador.
+
+---
+
+## Como testar a API
+
+Você pode testar os endpoints usando ferramentas como **Postman**, **Insomnia** ou via **curl** no terminal.
+
+### Exemplo usando curl:
+
+- **Criar uma tarefa:**
+  ```bash
+  curl -X POST http://localhost:8000/api/todos \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"title": "Minha tarefa", "description": "Descrição"}'
+  ```
+
+- **Listar tarefas:**
+  ```bash
+  curl -X GET http://localhost:8000/api/todos \
+    -H "Accept: application/json"
+  ```
+
+- **Filtrar tarefas por status:**
+  ```bash
+  curl -X GET "http://localhost:8000/api/todos?status=completed" \
+    -H "Accept: application/json"
+  ```
+
+- **Atualizar status de uma tarefa:**
+  ```bash
+  curl -X PATCH http://localhost:8000/api/todos/{id}/complete \
+    -H "Accept: application/json"
+  ```
+
+- **Deletar uma tarefa:**
+  ```bash
+  curl -X DELETE http://localhost:8000/api/todos/{id} \
+    -H "Accept: application/json"
+  ```
+
+---
