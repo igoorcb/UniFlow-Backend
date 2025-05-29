@@ -18,8 +18,15 @@ class TodoController extends Controller
 
     public function index(): JsonResponse
     {
-        $todos = $this->todoService->getAllTodos();
-        return response()->json($todos); // Serialização automática
+        $status = request()->query('status'); 
+    
+        if ($status) {
+            $todos = $this->todoService->getTodosByStatus($status);
+        } else {
+            $todos = $this->todoService->getAllTodos();
+        }
+    
+        return response()->json($todos);
     }
 
     public function store(TodoRequest $request): JsonResponse

@@ -11,4 +11,5 @@ interface TodoRepositoryInterface
     public function findById(TodoId $id): ?Todo;
     public function all(): array;
     public function delete(TodoId $id): void;
+    public function findByStatus(string $status): array;
 }

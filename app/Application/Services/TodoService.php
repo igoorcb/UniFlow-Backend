@@ -40,7 +40,10 @@ class TodoService
     {
         return $this->repository->findById(new TodoId($id));
     }
-
+    public function getTodosByStatus(string $status): array
+    {
+        return $this->repository->findByStatus($status);
+    }
     public function updateTodo(string $id, TodoDTO $dto): ?Todo
     {
         $todo = $this->repository->findById(new TodoId($id));

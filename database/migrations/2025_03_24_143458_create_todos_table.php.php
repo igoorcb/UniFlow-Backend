@@ -9,7 +9,7 @@ class CreateTodosTable extends Migration
     public function up()
     {
         Schema::create('todos', function (Blueprint $table) {
-            $table->string('id')->primary();
+            $table->string('id')->primary(); 
             $table->string('title');
             $table->text('description')->nullable();
             $table->string('status')->default('pending');

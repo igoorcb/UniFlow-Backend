@@ -23,7 +23,10 @@ class EloquentTodoRepository implements TodoRepositoryInterface
             ]
         );
     }
-
+    public function findByStatus(string $status): array
+    {
+        return \App\Models\Todo::where('status', $status)->get()->all();
+    }
     public function findById(TodoId $id): ?Todo
     {
         $todoModel = TodoModel::find($id->value());
