@@ -19,4 +19,10 @@ class TodoRequest extends FormRequest
             'status' => 'nullable|in:pending,completed',
         ];
     }
+    public function messages()
+{
+    return [
+        'title.required' => 'O título é obrigatório.',
+    ];
+}
 }
