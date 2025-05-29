@@ -166,6 +166,8 @@ Acesse [http://localhost:8000](http://localhost:8000) no navegador.
 
 Você pode testar os endpoints usando ferramentas como **Postman**, **Insomnia** ou via **curl** no terminal.
 
+**Lembrando que para testar o swagger basta rodar: php artisan l5-swagger:generate**
+
 ### Exemplo usando curl:
 
 - **Criar uma tarefa:**
