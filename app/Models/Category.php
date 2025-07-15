@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 
-class category extends Model
+class Category extends Model
 {
     use HasUuids, HasFactory;
 
@@ -18,6 +18,7 @@ class category extends Model
     protected $fillable = [
         'id',
         'name',
+        'slug',
         'description',
         'is_active',
     ];

@@ -3,8 +3,6 @@
 namespace App\Application\Repository;
 
 use App\Domain\Repositories\CreateCategoryInterface;
-use Ramsey\Uuid\Uuid;
-use Illuminate\Http\Request;
 use App\Models\Category;
 
 class CreateCategoryRepository implements CreateCategoryInterface

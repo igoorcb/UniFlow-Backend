@@ -15,7 +15,8 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->decimal('price', 10, 02);
+            $table->decimal('price', 10, 2);
+            $table->integer('stock')->default(0);
             $table->uuid('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->string('sku')->unique();
