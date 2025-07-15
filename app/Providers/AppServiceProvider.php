@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
-use App\Application\Repository\TodoService;
+use App\Application\Repository\CreateCategoryRepository;
+use App\Application\Repository\TodoRepository;
+use App\Domain\Repositories\CreateCategoryInterface;
 use App\Domain\Repositories\TodoRepositoryInterface;
 use App\Infrastructure\Repositories\EloquentTodoRepository;
 use Illuminate\Support\ServiceProvider;
@@ -15,11 +17,12 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(TodoRepositoryInterface::class, EloquentTodoRepository::class);
-        $this->app->bind(TodoService::class, function ($app) {
-            return new TodoService($app->make(TodoRepositoryInterface::class));
+        $this->app->bind(TodoRepository::class, function ($app) {
+            return new TodoRepository($app->make(TodoRepositoryInterface::class));
         });
 
         $this->app->bind(AuthRepositoryInterface::class, AuthRepository::class);
+        $this->app->bind(CreateCategoryInterface::class, CreateCategoryRepository::class);
     }
 
     public function boot()

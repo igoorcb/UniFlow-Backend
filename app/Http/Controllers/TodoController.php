@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Application\DTOs\TodoDTO;
-use App\Application\Repository\TodoService;
+use App\Application\Repository\TodoRepository;
 use App\Http\Requests\TodoRequest;
 use Illuminate\Http\JsonResponse;
 
@@ -22,9 +22,9 @@ use Illuminate\Http\JsonResponse;
  */
 class TodoController extends Controller
 {
-    private TodoService $todoService;
+    private TodoRepository $todoService;
 
-    public function __construct(TodoService $todoService)
+    public function __construct(TodoRepository $todoService)
     {
         $this->todoService = $todoService;
     }

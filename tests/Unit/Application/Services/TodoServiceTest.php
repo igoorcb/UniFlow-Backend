@@ -3,7 +3,7 @@
 namespace Tests\Unit\Application\Services;
 
 use App\Application\DTOs\TodoDTO;
-use App\Application\Repository\TodoService;
+use App\Application\Repository\TodoRepository;
 use App\Domain\Entities\Todo;
 use App\Domain\Repositories\TodoRepositoryInterface;
 use App\Domain\ValueObjects\TodoId;
@@ -17,7 +17,7 @@ class TodoServiceTest extends TestCase
         $mockRepo = $this->createMock(TodoRepositoryInterface::class);
         $mockRepo->expects($this->once())->method('save');
 
-        $service = new TodoService($mockRepo);
+        $service = new TodoRepository($mockRepo);
 
         $dto = new TodoDTO('Título Teste', 'Descrição Teste');
         $todo = $service->createTodo($dto);

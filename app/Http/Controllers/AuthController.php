@@ -20,10 +20,10 @@ class AuthController extends Controller
 
     public function register(AuthRequest $request)
     {
-        $x= $this->authService->register($request);
+        $register= $this->authService->register($request);
         return response()->json([
             'message' => 'Usuário registrado com sucesso.',
-            'user' => $x,
+            'user' => $register,
         ], 201);
     }
 

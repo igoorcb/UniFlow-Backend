@@ -9,7 +9,7 @@ use App\Domain\ValueObjects\TodoId;
 use App\Domain\ValueObjects\TodoStatus;
 use Ramsey\Uuid\Uuid;
 
-class TodoService
+class TodoRepository
 {
     private TodoRepositoryInterface $repository;
 
