@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Domain\Repositories\CreateCategoryInterface;
-use App\Http\Requests\CreateCategoryRequest;
+use App\Domain\Repositories\CategoryInterface;
+use App\Http\Requests\CategoryRequest;
 use Illuminate\Http\Request;
 
-class CreateCategoryController extends Controller
+class CategoryController extends Controller
 {
-    protected CreateCategoryInterface $createCategory;
+    protected CategoryInterface $createCategory;
 
-    public function __construct(CreateCategoryInterface $createCategory)
+    public function __construct(CategoryInterface $createCategory)
     {
         $this->createCategory = $createCategory;
     }
 
-    public function store(CreateCategoryRequest $request)
+    public function store(CategoryRequest $request)
     {
         try {
             $category = $this->createCategory->createCategory($request);

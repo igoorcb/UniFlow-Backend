@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Domain\Repositories\CreateProductInterface;
-use App\Http\Requests\CreateProductRequest;
+use App\Domain\Repositories\ProductInterface;
+use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
 
-class CreateProductController extends Controller
+class ProductController extends Controller
 {
-    protected CreateProductInterface $createProduct;
+    protected ProductInterface $createProduct;
 
-    public function __construct(CreateProductInterface $createProduct)
+    public function __construct(ProductInterface $createProduct)
     {
         $this->createProduct = $createProduct;
     }
 
-    public function store(CreateProductRequest $request)
+    public function store(ProductRequest $request)
     {
         try {
             $product = $this->createProduct->createProduct($request);

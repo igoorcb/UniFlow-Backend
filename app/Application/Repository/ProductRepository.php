@@ -2,11 +2,11 @@
 
 namespace App\Application\Repository;
 
-use App\Domain\Repositories\CreateProductInterface;
+use App\Domain\Repositories\ProductInterface;
 use Illuminate\Http\Request;
 use App\Models\Product;
 
-class CreateProductRepository implements CreateProductInterface
+class ProductRepository implements ProductInterface
 {
 
     public function createProduct($request)

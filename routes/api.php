@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CreateCategoryController;
-use App\Http\Controllers\CreateProductController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TodoController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,8 +28,8 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::prefix('ecommerce')->group(function () {
-        Route::post('/create-category', [CreateCategoryController::class, 'store']);
-        Route::post('/create-product', [CreateProductController::class, 'store']);
+        Route::post('/create-category', [CategoryController::class, 'store']);
+        Route::post('/create-product', [ProductController::class, 'store']);
     });
 
 

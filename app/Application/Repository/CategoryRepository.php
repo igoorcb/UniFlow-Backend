@@ -2,10 +2,10 @@
 
 namespace App\Application\Repository;
 
-use App\Domain\Repositories\CreateCategoryInterface;
+use App\Domain\Repositories\CategoryInterface;
 use App\Models\Category;
 
-class CreateCategoryRepository implements CreateCategoryInterface
+class CategoryRepository implements CategoryInterface
 {
 
     public function CreateCategory($request)

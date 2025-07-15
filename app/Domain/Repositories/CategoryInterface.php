@@ -3,7 +3,7 @@
 namespace App\Domain\Repositories;
 
 
-interface CreateCategoryInterface
+interface CategoryInterface
 {
     public function CreateCategory($request);
 }

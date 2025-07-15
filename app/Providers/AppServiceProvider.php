@@ -2,11 +2,11 @@
 
 namespace App\Providers;
 
-use App\Application\Repository\CreateCategoryRepository;
-use App\Application\Repository\CreateProductRepository;
+use App\Application\Repository\CategoryRepository;
+use App\Application\Repository\ProductRepository;
 use App\Application\Repository\TodoRepository;
-use App\Domain\Repositories\CreateCategoryInterface;
-use App\Domain\Repositories\CreateProductInterface;
+use App\Domain\Repositories\CategoryInterface;
+use App\Domain\Repositories\ProductInterface;
 use App\Domain\Repositories\TodoRepositoryInterface;
 use App\Infrastructure\Repositories\EloquentTodoRepository;
 use Illuminate\Support\ServiceProvider;
@@ -24,8 +24,8 @@ class AppServiceProvider extends ServiceProvider
         });
 
         $this->app->bind(AuthRepositoryInterface::class, AuthRepository::class);
-        $this->app->bind(CreateCategoryInterface::class, CreateCategoryRepository::class);
-        $this->app->bind(CreateProductInterface::class, CreateProductRepository::class);
+        $this->app->bind(CategoryInterface::class, CategoryRepository::class);
+        $this->app->bind(ProductInterface::class, ProductRepository::class);
     }
 
     public function boot()

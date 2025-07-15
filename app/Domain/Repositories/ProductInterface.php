@@ -3,7 +3,7 @@
 namespace App\Domain\Repositories;
 
 
-interface CreateProductInterface
+interface ProductInterface
 {
     public function createProduct($request);
 }
