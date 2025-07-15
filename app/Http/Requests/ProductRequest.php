@@ -10,8 +10,13 @@ class ProductRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'is_active' => 'required|boolean',
+            'description' => 'nullable|string',
+            'price' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
+            'sku' => 'required|string|unique:products,sku',
+            'category_id' => 'required|string',
+            'image_url' => 'nullable|url',
+            'is_active' => 'boolean',
         ];
     }
     public function messages(): array

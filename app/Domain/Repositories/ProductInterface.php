@@ -3,7 +3,9 @@
 namespace App\Domain\Repositories;
 
 
+use App\Models\Product;
+
 interface ProductInterface
 {
-    public function createProduct($request);
+    public function createProduct(array $data): Product;
 }

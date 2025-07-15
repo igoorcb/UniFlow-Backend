@@ -3,28 +3,23 @@
 namespace App\Application\Repository;
 
 use App\Domain\Repositories\ProductInterface;
-use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Http\Request;
 
 class ProductRepository implements ProductInterface
 {
 
-    public function createProduct($request)
+    public function createProduct(array $data): Product
     {
-
-        $create = new product();
-        $create->name = $request->name;
-        $create->description = $request->description;
-        $create->price = $request->price;
-        $create->stock = $request->stock;
-        $create->category_id = $request->category_id;
-        $create->sku = $request->sku;
-        $create->image_url = $request->image_url;
-        $create->is_active = $request->is_active;
-
-        $create->save();
-
-        return $create;
+        return Product::create([
+            'name'        => $data['name'],
+            'description' => $data['description'],
+            'price'       => $data['price'],
+            'stock'    => $data['stock'],
+            'category_id' => $data['category_id'],
+            'sku'    => $data['sku'],
+            'image_url'    => $data['image_url'] ,
+            'is_active'    => $data['is_active'] ?? true,
+        ]);
     }
-
 }
