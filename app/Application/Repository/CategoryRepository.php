@@ -4,20 +4,18 @@ namespace App\Application\Repository;
 
 use App\Domain\Repositories\CategoryInterface;
 use App\Models\Category;
+use Illuminate\Support\Arr;
 
 class CategoryRepository implements CategoryInterface
 {
 
-    public function CreateCategory($request)
+    public function CreateCategory(array $data): Category
     {
-
-        $create = new category();
-        $create->name = $request->name;
-        $create->description = $request->description;
-        $create->is_active = $request->is_active;
-
-        $create->save();
-        return $create;
+        return Category::create([
+            'name'        => $data['name'],
+            'description' => $data['description'] ?? null,
+            'is_active'   => $data['is_active'] ?? true,
+        ]);
     }
 
 }

@@ -3,7 +3,9 @@
 namespace App\Domain\Repositories;
 
 
+use App\Models\Category;
+
 interface CategoryInterface
 {
-    public function CreateCategory($request);
+    public function CreateCategory(array $data): Category;
 }

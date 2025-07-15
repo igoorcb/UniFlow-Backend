@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Domain\Repositories\CategoryInterface;
 use App\Http\Requests\CategoryRequest;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -15,10 +16,10 @@ class CategoryController extends Controller
         $this->createCategory = $createCategory;
     }
 
-    public function store(CategoryRequest $request)
+    public function store(CategoryRequest $request): JsonResponse
     {
         try {
-            $category = $this->createCategory->createCategory($request);
+            $category = $this->createCategory->CreateCategory($request->validated());
 
             return response()->json([
                 'category' => $category,
