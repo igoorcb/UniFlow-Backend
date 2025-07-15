@@ -58,7 +58,7 @@ class TodoController extends Controller
      */
     public function index(): JsonResponse
     {
-        $status = request()->query('status'); 
+        $status = request()->query('status');
         $todos = $status ? $this->todoService->getTodosByStatus($status) : $this->todoService->getAllTodos();
         return response()->json($todos);
     }

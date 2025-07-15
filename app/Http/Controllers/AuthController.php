@@ -2,48 +2,48 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AuthRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Domain\Repositories\AuthRepositoryInterface;
 
 class AuthController extends Controller
 {
-    public function register(Request $request)
+    protected AuthRepositoryInterface $authService;
+
+    public function __construct(AuthRepositoryInterface $authService)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|unique:users',
-            'password' => 'required|string|min:6|confirmed'
-        ]);
+        $this->authService = $authService;
+    }
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        return response()->json(['user' => $user], 201);
+    public function register(AuthRequest $request)
+    {
+        $x= $this->authService->register($request);
+        return response()->json([
+            'message' => 'Usuário registrado com sucesso.',
+            'user' => $x,
+        ], 201);
     }
 
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-
-        $user = \App\Models\User::where('email', $request->email)->first();
-
-        if (!$user || !\Hash::check($request->password, $user->password)) {
-            return response()->json(['message' => 'As credenciais estão incorretas.'], 401);
+        try {
+            $data = $this->authService->login($request);
+            return response()->json([
+                'message' => 'Login realizado com sucesso.',
+                'token' => $data['token'],
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage(),
+            ], $e->getCode() ?: 400);
         }
+    }
 
-        $token = $user->createToken('api-token')->plainTextToken;
 
-        return response()->json([
-            'user' => $user,
-            'token' => $token,
-        ]);
+    private function AuthRepositoryInterface()
+    {
     }
 }

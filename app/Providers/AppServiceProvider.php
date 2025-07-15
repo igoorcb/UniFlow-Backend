@@ -7,6 +7,9 @@ use App\Domain\Repositories\TodoRepositoryInterface;
 use App\Infrastructure\Repositories\EloquentTodoRepository;
 use Illuminate\Support\ServiceProvider;
 
+use App\Application\Services\AuthRepository;
+use App\Domain\Repositories\AuthRepositoryInterface;
+
 class AppServiceProvider extends ServiceProvider
 {
     public function register()
@@ -15,6 +18,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(TodoService::class, function ($app) {
             return new TodoService($app->make(TodoRepositoryInterface::class));
         });
+
+        $this->app->bind(AuthRepositoryInterface::class, AuthRepository::class);
     }
 
     public function boot()
