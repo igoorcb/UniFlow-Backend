@@ -21,6 +21,7 @@ class AuthController extends Controller
     public function register(AuthRequest $request)
     {
         $register= $this->authService->register($request);
+
         return response()->json([
             'message' => 'Usuário registrado com sucesso.',
             'user' => $register,
@@ -40,10 +41,5 @@ class AuthController extends Controller
                 'message' => $e->getMessage(),
             ], $e->getCode() ?: 400);
         }
-    }
-
-
-    private function AuthRepositoryInterface()
-    {
     }
 }

@@ -17,21 +17,18 @@ class CreateCategoryController extends Controller
 
     public function store(CreateCategoryRequest $request)
     {
-        $createCategory = $this->createCategory->CreateCategory($request);
+        try {
+            $category = $this->createCategory->createCategory($request);
 
-        $category = [
-            'id' => $createCategory['id'],
-            'name' => $createCategory['name'],
-            'description' => $createCategory['description'],
-            'is_active' => $createCategory['is_active'],
-            'updated_at' => $createCategory['updated_at'],
-            'created_at' => $createCategory['created_at'],
-        ];
+            return response()->json([
+                'category' => $category,
+            ],201);
 
-        return response()->json([
-            'category' => $category,
-        ], 201);
+        }  catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Falha ao criar a categoria',
+                'message' => $e->getMessage()
+            ], 500);
+        }
     }
-
-
 }

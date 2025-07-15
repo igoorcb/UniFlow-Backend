@@ -17,22 +17,16 @@ class CreateProductController extends Controller
 
     public function store(CreateProductRequest $request)
     {
-        $createProduct = $this->createProduct->createProduct($request);
-        $createProduct = [
-            'name' => $createProduct['name'],
-            'description' => $createProduct['description'],
-            'price' => $createProduct['price'],
-            'stock' => $createProduct['stock'],
-            'category_id' => $createProduct['category_id'],
-            'sku' => $createProduct['sku'],
-            'image_url' => $createProduct['image_url'],
-            'is_active' => $createProduct['is_active'],
-            'updated_at' => $createProduct['updated_at'],
-            'created_at' => $createProduct['created_at'],
-        ];
-        return response()->json([
-            'products' => $createProduct,
-        ], 201);
+        try {
+            $product = $this->createProduct->createProduct($request);
+            return response()->json([
+                'product' => $product,
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Falha ao criar produto',
+                'message' => $e->getMessage()
+            ], 500);
+        }
     }
-
 }
