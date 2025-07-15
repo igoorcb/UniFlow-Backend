@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Application\DTOs\TodoDTO;
-use App\Application\Services\TodoService;
+use App\Application\Repository\TodoService;
 use App\Http\Requests\TodoRequest;
 use Illuminate\Http\JsonResponse;
 

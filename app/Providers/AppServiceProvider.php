@@ -2,12 +2,12 @@
 
 namespace App\Providers;
 
-use App\Application\Services\TodoService;
+use App\Application\Repository\TodoService;
 use App\Domain\Repositories\TodoRepositoryInterface;
 use App\Infrastructure\Repositories\EloquentTodoRepository;
 use Illuminate\Support\ServiceProvider;
 
-use App\Application\Services\AuthRepository;
+use App\Application\Repository\AuthRepository;
 use App\Domain\Repositories\AuthRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
