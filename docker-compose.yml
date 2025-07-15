@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+    app:
+        build:
+            context: .
+        container_name: uniflow-app
+        working_dir: /var/www/html
+        volumes:
+            - ./:/var/www/html
+        ports:
+            - "8000:8000"
+        environment:
+            - DB_HOST=db
+            - DB_DATABASE=uniflow
+            - DB_USERNAME=root
+            - DB_PASSWORD=root
+        depends_on:
+            - db
+
+    db:
+        image: mysql:8.0
+        container_name: uniflow-db
+        restart: always
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_DATABASE: uniflow
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_USER: user
+            MYSQL_PASSWORD: secret
+        volumes:
+            - dbdata:/var/lib/mysql
+
+volumes:
+    dbdata:
