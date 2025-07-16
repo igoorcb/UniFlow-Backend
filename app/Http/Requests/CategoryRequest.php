@@ -9,7 +9,7 @@ class CategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:categories,name',
             'description' => 'required|string',
             'is_active' => 'required|boolean',
         ];
@@ -18,6 +18,7 @@ class CategoryRequest extends FormRequest
     {
         return [
             'name.required' => 'O nome é obrigatório.',
+            'name.unique' => 'Já existe uma categoria com este nome.',
         ];
     }
 }
