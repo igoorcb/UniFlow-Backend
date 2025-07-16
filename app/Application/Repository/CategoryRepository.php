@@ -2,7 +2,7 @@
 
 namespace App\Application\Repository;
 
-use App\Domain\Repositories\CategoryInterface;
+use App\Domain\Interface\CategoryInterface;
 use App\Models\Category;
 use Illuminate\Support\Arr;
 

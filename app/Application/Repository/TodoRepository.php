@@ -4,7 +4,7 @@ namespace App\Application\Repository;
 
 use App\Application\DTOs\TodoDTO;
 use App\Domain\Entities\Todo;
-use App\Domain\Repositories\TodoRepositoryInterface;
+use App\Domain\Interface\TodoRepositoryInterface;
 use App\Domain\ValueObjects\TodoId;
 use App\Domain\ValueObjects\TodoStatus;
 use Ramsey\Uuid\Uuid;

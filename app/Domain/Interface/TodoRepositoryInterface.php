@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Repositories;
+namespace App\Domain\Interface;
 
 use App\Domain\Entities\Todo;
 use App\Domain\ValueObjects\TodoId;

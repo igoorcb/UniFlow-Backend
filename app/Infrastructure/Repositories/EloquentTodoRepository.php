@@ -3,7 +3,7 @@
 namespace App\Infrastructure\Repositories;
 
 use App\Domain\Entities\Todo;
-use App\Domain\Repositories\TodoRepositoryInterface;
+use App\Domain\Interface\TodoRepositoryInterface;
 use App\Domain\ValueObjects\TodoId;
 use App\Domain\ValueObjects\TodoStatus;
 use App\Models\Todo as TodoModel;

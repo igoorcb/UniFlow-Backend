@@ -2,7 +2,7 @@
 
 namespace App\Application\Repository;
 
-use App\Domain\Repositories\ProductInterface;
+use App\Domain\Interface\ProductInterface;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -30,4 +30,17 @@ class ProductRepository implements ProductInterface
         $product->save();
         return $product;
     }
+
+    public function deleteProduct($id): Product
+    {
+        $product = Product::find($id);
+
+        if(!$product){
+            throw new Exception('Product not found');
+        }
+
+        $product->delete();
+        return $product;
+    }
+
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Domain\Repositories\CategoryInterface;
+use App\Domain\Interface\CategoryInterface;
 use App\Http\Requests\CategoryRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;

@@ -23,14 +23,23 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/', [TodoController::class, 'store']);
         Route::get('/{id}', [TodoController::class, 'show']);
         Route::put('/{id}', [TodoController::class, 'update']);
-        Route::patch('/{id}/complete', [TodoController::class, 'complete']);
         Route::delete('/{id}', [TodoController::class, 'destroy']);
+        Route::patch('/{id}/complete', [TodoController::class, 'complete']);
     });
 
+    /*
+       Usando ApiResource ->
+
+        //GET               /example           → index
+        //POST              /example           → store
+        //GET               /example/{id}      → show
+        //PUT ou Patch      /example/{id}      → update
+        //DELETE            /example/{id}      → destroy
+    */
+
     Route::prefix('ecommerce')->group(function () {
-        Route::post('/create-category', [CategoryController::class, 'store']);
-        Route::post('/create-product', [ProductController::class, 'store']);
-        Route::post('/update-product/{id}', [ProductController::class, 'update']);
+        Route::apiResource('categories', CategoryController::class);
+        Route::apiResource('products', ProductController::class);
     });
 
 
