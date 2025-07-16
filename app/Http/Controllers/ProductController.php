@@ -16,7 +16,6 @@ class ProductController extends Controller
     {
         $this->productRepository = $productRepository;
     }
-
     public function update(UpdateProductRequest $request, $id)
     {
         try {
@@ -29,7 +28,6 @@ class ProductController extends Controller
             ], 500);
         }
     }
-
     public function store(ProductRequest $request)
     {
         try {
@@ -45,7 +43,6 @@ class ProductController extends Controller
             ], 500);
         }
     }
-
     public function destroy($id){
         try {
             $product = $this->productRepository->deleteProduct($id);

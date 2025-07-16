@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 
 class ProductRepository implements ProductInterface
 {
-
     public function createProduct(array $data): Product
     {
         return Product::create([
@@ -23,7 +22,6 @@ class ProductRepository implements ProductInterface
             'is_active'    => $data['is_active'] ?? true,
         ]);
     }
-
     public function updateProduct($id, $request): Product
     {
         $product = Product::find($id);
@@ -31,7 +29,6 @@ class ProductRepository implements ProductInterface
         $product->save();
         return $product;
     }
-
     public function deleteProduct($id): Product
     {
         $product = Product::find($id);
