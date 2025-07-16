@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
-
+// Rotas privadas
 Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('todos')->group(function () {
         Route::get('/', [TodoController::class, 'index']);
@@ -26,7 +26,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/{id}', [TodoController::class, 'destroy']);
         Route::patch('/{id}/complete', [TodoController::class, 'complete']);
     });
-
     /*
        Usando ApiResource ->
 
@@ -36,7 +35,6 @@ Route::middleware('auth:sanctum')->group(function () {
         //PUT ou Patch      /example/{id}      → update
         //DELETE            /example/{id}      → destroy
     */
-
     Route::prefix('ecommerce')->group(function () {
         Route::apiResource('categories', CategoryController::class);
         Route::apiResource('products', ProductController::class);

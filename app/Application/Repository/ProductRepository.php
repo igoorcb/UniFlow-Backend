@@ -4,6 +4,7 @@ namespace App\Application\Repository;
 
 use App\Domain\Interface\ProductInterface;
 use App\Models\Product;
+use Exception;
 use Illuminate\Http\Request;
 
 class ProductRepository implements ProductInterface
