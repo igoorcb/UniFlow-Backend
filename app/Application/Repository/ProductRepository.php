@@ -22,4 +22,12 @@ class ProductRepository implements ProductInterface
             'is_active'    => $data['is_active'] ?? true,
         ]);
     }
+
+    public function updateProduct($id, $request): Product
+    {
+        $product = Product::find($id);
+        $product->fill($request->all());
+        $product->save();
+        return $product;
+    }
 }

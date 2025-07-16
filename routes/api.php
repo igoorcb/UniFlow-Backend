@@ -30,6 +30,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('ecommerce')->group(function () {
         Route::post('/create-category', [CategoryController::class, 'store']);
         Route::post('/create-product', [ProductController::class, 'store']);
+        Route::post('/update-product/{id}', [ProductController::class, 'update']);
     });
 
 
