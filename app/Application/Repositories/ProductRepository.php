@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Application\Repository;
+namespace App\Application\Repositories;
 
-use App\Domain\Repositories\ProductInterface;
+use App\Domain\Interfaces\ProductInterface;
 use App\Models\Product;
+use Exception;
 use Illuminate\Http\Request;
 
 class ProductRepository implements ProductInterface
 {
-
     public function createProduct(array $data): Product
     {
         return Product::create([
@@ -22,7 +22,6 @@ class ProductRepository implements ProductInterface
             'is_active'    => $data['is_active'] ?? true,
         ]);
     }
-
     public function updateProduct($id, $request): Product
     {
         $product = Product::find($id);
@@ -30,4 +29,16 @@ class ProductRepository implements ProductInterface
         $product->save();
         return $product;
     }
+    public function deleteProduct($id): Product
+    {
+        $product = Product::find($id);
+
+        if(!$product){
+            throw new Exception('Product not found');
+        }
+
+        $product->delete();
+        return $product;
+    }
+
 }

@@ -2,17 +2,17 @@
 
 namespace App\Providers;
 
-use App\Application\Repository\CategoryRepository;
-use App\Application\Repository\ProductRepository;
-use App\Application\Repository\TodoRepository;
-use App\Domain\Repositories\CategoryInterface;
-use App\Domain\Repositories\ProductInterface;
-use App\Domain\Repositories\TodoRepositoryInterface;
-use App\Infrastructure\Repositories\EloquentTodoRepository;
+use App\Application\Repositories\CategoryRepository;
+use App\Application\Repositories\ProductRepository;
+use App\Application\Repositories\TodoRepository;
+use App\Domain\Interfaces\CategoryInterface;
+use App\Domain\Interfaces\ProductInterface;
+use App\Domain\Interfaces\TodoRepositoryInterface;
+use App\Infrastructure\Persistence\Eloquent\EloquentTodoRepository;
 use Illuminate\Support\ServiceProvider;
 
-use App\Application\Repository\AuthRepository;
-use App\Domain\Repositories\AuthRepositoryInterface;
+use App\Application\Repositories\AuthRepository;
+use App\Domain\Interfaces\AuthRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {

@@ -13,15 +13,18 @@ class TodoSeeder extends Seeder
     {
         $faker = Faker::create();
 
+        // Pega o primeiro usuário existente
+        $userId = \DB::table('users')->value('id') ?? 1;
         // Criar 10 tarefas fictícias
         for ($i = 0; $i < 10; $i++) {
             Todo::create([
-                'id' => Uuid::uuid4()->toString(), // Gera um UUID único
-                'title' => $faker->sentence(3), // Título com 3 palavras
-                'description' => $faker->optional()->paragraph(), // Descrição opcional
-                'status' => $faker->randomElement(['pending', 'completed']), // Status aleatório
+                'id' => Uuid::uuid4()->toString(),
+                'title' => $faker->sentence(3),
+                'description' => $faker->optional()->paragraph(),
+                'status' => $faker->randomElement(['pending', 'completed']),
+                'user_id' => $userId,
                 'created_at' => now(),
-                'updated_at' => $faker->randomElement([null, now()]), // updated_at opcional
+                'updated_at' => $faker->randomElement([null, now()]),
             ]);
         }
     }
