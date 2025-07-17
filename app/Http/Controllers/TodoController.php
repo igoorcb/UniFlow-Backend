@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Application\DTOs\TodoDTO;
-use App\Application\Repository\TodoRepository;
+use App\Application\Repositories\TodoRepository;
 use App\Http\Requests\TodoRequest;
 use Illuminate\Http\JsonResponse;
 
@@ -58,8 +58,11 @@ class TodoController extends Controller
      */
     public function index(): JsonResponse
     {
+        $user = auth()->user();
         $status = request()->query('status');
-        $todos = $status ? $this->todoService->getTodosByStatus($status) : $this->todoService->getAllTodos();
+        $todos = $status
+            ? $this->todoService->getTodosByStatus($status, $user->id)
+            : $this->todoService->getAllTodos($user->id);
         return response()->json($todos);
     }
 
@@ -84,7 +87,10 @@ class TodoController extends Controller
      */
     public function store(TodoRequest $request): JsonResponse
     {
-        $dto = TodoDTO::fromArray($request->validated());
+        $user = auth()->user();
+        $data = $request->validated();
+        $data['user_id'] = $user->id;
+        $dto = TodoDTO::fromArray($data);
         $todo = $this->todoService->createTodo($dto);
         return response()->json($todo, 201);
     }

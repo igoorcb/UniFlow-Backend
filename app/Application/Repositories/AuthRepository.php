@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Application\Repository;
+namespace App\Application\Repositories;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use App\Domain\Interface\AuthRepositoryInterface;
+use App\Domain\Interfaces\AuthRepositoryInterface;
 use Illuminate\Http\Request;
 
 class AuthRepository implements AuthRepositoryInterface

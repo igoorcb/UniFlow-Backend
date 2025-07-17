@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use App\Domain\Interface\AuthRepositoryInterface;
+use App\Domain\Interfaces\AuthRepositoryInterface;
 
 class AuthController extends Controller
 {

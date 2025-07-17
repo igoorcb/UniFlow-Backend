@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Application\Repository;
+namespace App\Application\Repositories;
 
 use App\Application\DTOs\TodoDTO;
 use App\Domain\Entities\Todo;
-use App\Domain\Interface\TodoRepositoryInterface;
+use App\Domain\Interfaces\TodoRepositoryInterface;
 use App\Domain\ValueObjects\TodoId;
 use App\Domain\ValueObjects\TodoStatus;
 use Ramsey\Uuid\Uuid;
@@ -25,24 +25,26 @@ class TodoRepository
             $dto->title,
             $dto->description,
             new TodoStatus($dto->status),
-            new \DateTime()
+            new \DateTime(),
+            null,
+            $dto->user_id
         );
         $this->repository->save($todo);
         return $todo;
     }
 
-    public function getAllTodos(): array
+    public function getAllTodos($userId): array
     {
-        return $this->repository->all();
+        return $this->repository->all($userId);
     }
 
     public function getTodoById(string $id): ?Todo
     {
         return $this->repository->findById(new TodoId($id));
     }
-    public function getTodosByStatus(string $status): array
+    public function getTodosByStatus($status, $userId): array
     {
-        return $this->repository->findByStatus($status);
+        return $this->repository->findByStatus($status, $userId);
     }
     public function updateTodo(string $id, TodoDTO $dto): ?Todo
     {
@@ -57,7 +59,8 @@ class TodoRepository
             $dto->description,
             new TodoStatus($dto->status),
             $todo->getCreatedAt(),
-            new \DateTime()
+            new \DateTime(),
+            $todo->getUserId()
         );
         $this->repository->save($updatedTodo);
         return $updatedTodo;
@@ -70,7 +73,15 @@ class TodoRepository
             return null;
         }
 
-        $completedTodo = $todo->markAsCompleted();
+        $completedTodo = new Todo(
+            $todo->getId(),
+            $todo->getTitle(),
+            $todo->getDescription(),
+            new TodoStatus('completed'),
+            $todo->getCreatedAt(),
+            new \DateTime(),
+            $todo->getUserId()
+        );
         $this->repository->save($completedTodo);
         return $completedTodo;
     }

@@ -14,6 +14,7 @@ class Todo implements JsonSerializable
     private TodoStatus $status;
     private \DateTime $createdAt;
     private ?\DateTime $updatedAt;
+    private string $userId;
 
     public function __construct(
         TodoId $id,
@@ -21,7 +22,8 @@ class Todo implements JsonSerializable
         ?string $description,
         TodoStatus $status,
         \DateTime $createdAt,
-        ?\DateTime $updatedAt = null
+        ?\DateTime $updatedAt = null,
+        string $userId
     ) {
         $this->id = $id;
         $this->title = $title;
@@ -29,6 +31,7 @@ class Todo implements JsonSerializable
         $this->status = $status;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
+        $this->userId = $userId;
     }
 
     public function getId(): TodoId
@@ -59,6 +62,11 @@ class Todo implements JsonSerializable
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
+    }
+
+    public function getUserId(): string
+    {
+        return $this->userId;
     }
 
     public function markAsCompleted(): self

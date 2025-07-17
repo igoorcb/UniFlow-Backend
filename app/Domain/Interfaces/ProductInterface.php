@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Interface;
+namespace App\Domain\Interfaces;
 
 
 use App\Models\Product;

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Application\Repository;
+namespace App\Application\Repositories;
 
-use App\Domain\Interface\ProductInterface;
+use App\Domain\Interfaces\ProductInterface;
 use App\Models\Product;
 use Exception;
 use Illuminate\Http\Request;

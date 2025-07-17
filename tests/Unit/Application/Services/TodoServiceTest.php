@@ -3,9 +3,9 @@
 namespace Tests\Unit\Application\Services;
 
 use App\Application\DTOs\TodoDTO;
-use App\Application\Repository\TodoRepository;
+use App\Application\Repositories\TodoRepository;
 use App\Domain\Entities\Todo;
-use App\Domain\Interface\TodoRepositoryInterface;
+use App\Domain\Interfaces\TodoRepositoryInterface;
 use App\Domain\ValueObjects\TodoId;
 use App\Domain\ValueObjects\TodoStatus;
 use PHPUnit\Framework\TestCase;

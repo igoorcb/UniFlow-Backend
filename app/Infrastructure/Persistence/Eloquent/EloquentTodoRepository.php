@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Repositories;
+namespace App\Infrastructure\Persistence\Eloquent;
 
 use App\Domain\Entities\Todo;
 use App\Domain\Interfaces\TodoRepositoryInterface;
@@ -12,20 +12,22 @@ class EloquentTodoRepository implements TodoRepositoryInterface
 {
     public function save(Todo $todo): void
     {
-        TodoModel::updateOrCreate(
+        \Log::info('DEBUG user_id', ['user_id' => $todo->getUserId()]);
+        \App\Models\Todo::updateOrCreate(
             ['id' => $todo->getId()->value()],
             [
                 'title' => $todo->getTitle(),
                 'description' => $todo->getDescription(),
                 'status' => $todo->getStatus()->value(),
+                'user_id' => $todo->getUserId(),
                 'created_at' => $todo->getCreatedAt(),
                 'updated_at' => $todo->getUpdatedAt(),
             ]
         );
     }
-    public function findByStatus(string $status): array
+    public function findByStatus(string $status, string $userId): array
     {
-        return \App\Models\Todo::where('status', $status)->get()->all();
+        return \App\Models\Todo::where('status', $status)->where('user_id', $userId)->get()->all();
     }
     public function findById(TodoId $id): ?Todo
     {
