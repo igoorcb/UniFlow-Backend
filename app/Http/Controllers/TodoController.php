@@ -135,7 +135,10 @@ class TodoController extends Controller
      */
     public function update(TodoRequest $request, string $id): JsonResponse
     {
-        $dto = TodoDTO::fromArray($request->validated());
+        $user = auth()->user();
+        $data = $request->validated();
+        $data['user_id'] = $user->id;
+        $dto = TodoDTO::fromArray($data);
         $todo = $this->todoService->updateTodo($id, $dto);
         return $todo ? response()->json($todo) : response()->json(['error' => 'Todo not found'], 404);
     }
